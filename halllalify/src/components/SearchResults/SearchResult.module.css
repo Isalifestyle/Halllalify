@@ -1,0 +1,55 @@
+.style 
+{
+    /* background-color:rgb(228, 196, 137); */
+    display:flex;
+    justify-content:center;   
+    
+
+}
+.search 
+{
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+    padding: "20px";
+    border-radius: "10px";
+}
+.data
+{
+    display:flex;
+
+    padding:10px;
+}
+
+.data button 
+{
+    margin-left:10px;
+}
+
+h2
+{
+    color:white;
+}
+
+.subcontainer 
+{
+    display:flex;
+    flex-direction:row;
+}
+
+.surahinfo 
+{
+    display:flex;
+    flex-direction: column;
+}
+
+.artistInfo 
+{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap; /* Prevents wrapping to a new line */
+
+}
+
+.artistName {
+    color: white;
+    white-space: nowrap; /* Prevents the text from wrapping inside each element */
+  }
