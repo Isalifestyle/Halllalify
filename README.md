@@ -30,7 +30,7 @@ This is a project from the CodeCademy Full Stack career path. NOTE The initial r
     npm install
     ```
 3. Spotify Client ID and Client Secret
-   - In order to use this project template, you will need to have a Client ID and Client Secret. More information about creating these can be found [here.] (https://developer.spotify.com/documentation/web-api/tutorials/getting-started#create-an-app)
+   - In order to use this project template, you will need to have a Client ID and Client Secret. More information about creating these can be found [here](https://developer.spotify.com/documentation/web-api/tutorials/getting-started#create-an-app).
        
 ---
 
@@ -73,9 +73,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ---
 
 ## Acknowledgements
-
-- List any tools, libraries, resources, or people that contributed to the project.
-- Examples:
-    - [Express.js](https://expressjs.com/) for building the backend.
-    - [React](https://reactjs.org/) for the front-end UI.
-    - Inspirations or tutorials.
+- PKCE biolerplate [code](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) by alnacle
