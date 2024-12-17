@@ -10,8 +10,8 @@ const SearchBar = () =>
 
 
     const searchSpotify = async (query) => {
-        const clientId = "9a668d8e6d9c4bfaa7b9814efdd2e399";
-        const clientSecret = "585bce0ac0464c948a9c217a5634b5cb";
+        const clientId = process.env.REACT_APP_CLIENT_ID;
+        const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
       
         // Step 1: Get Access Token
         const tokenUrl = "https://accounts.spotify.com/api/token";
