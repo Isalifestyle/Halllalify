@@ -11,12 +11,9 @@ const Playlist = () => {
     const [playlistsStored, setPlaylistsStored] = useState({items: []}); 
     const [newName, setNewName] = useState('');
     const [saveID, setSaveID] = useState('')
+    const [loadingID, setLoadingID] = useState(null)
     let trackNames = addResults.map(song => song.uri);
-    console.log("New Name: ", newName)
-    console.log('ID SHOULD XHANGE ', saveID)
-    console.log( "Playlists Stored: ",playlistsStored)
-    console.log('Type of saveID :', typeof saveID)
-    console.log('Type of newName:', typeof newName)
+
       // Call the function to get rate limit info
 
 
@@ -40,8 +37,8 @@ const Playlist = () => {
             }
     
         
-        updatePlaylist(); // Fetch playlists
-      }, [playlistName]); // Dependency: This will run when storedUserData changes
+        updatePlaylist(); 
+      }, [playlistName]); // Not the best use of UseEffect here, Need to figure out a way to make the api call as least as possible!
       
 
     const addPlaylists = ((newPlaylist) => {
@@ -59,8 +56,12 @@ const Playlist = () => {
     const handlePlaylistNameChange = async () =>
     {
       
-        console.log('NewName ID b4 CORS: ', newName)
-        await changeUserPlaylist(saveID, newName);
+        
+        let response = await changeUserPlaylist(saveID, newName);
+        setLoadingID(saveID);
+        setTimeout(() => {
+            setLoadingID(false)
+        }, 2000);
     }
     
  
@@ -141,7 +142,8 @@ const Playlist = () => {
                 ))}
                 <div>
                  {playlistsStored?.items?.length >1  ? playlistsStored.items.map((playlist) => 
-                 <div>
+                 <div className = {styles.loadPlaylist}>
+                    <div>
                     <h2 onInput = {handleNameChange} onClick = {() => setSaveID(playlist.id)} onBlur = {handlePlaylistNameChange} contentEditable suppressContentEditableWarning={true} style = {{color: 'orange', width: '100px'}}>{playlist.name} </h2>
                     <h2>{console.log(playlist.id)}</h2>
                     { Array.isArray(playlist.images) && playlist.images.length > 0 ?(
@@ -151,7 +153,9 @@ const Playlist = () => {
                         style={{ width: "100px", height: "100px" }} // Adjust size as needed
                     />
                        ): null }
-                </div>
+                    </div>
+                        {loadingID === playlist.id && <div className={styles.loader}></div>}
+                    </div>
 
                  ): null} 
                 </div>
@@ -162,7 +166,7 @@ const Playlist = () => {
                     </div>
                     <div onClick = {handleSaveToSpotify} className = {styles.spotify}>
                         <img style = {{height:'50px', width:'50px' }} src = "images/spotify.svg"/>
-                        <h3>Sign in to Spotify</h3>
+                        <h3 style = {{marginLeft: '10px'}}>Sign in to Spotify</h3>
                     </div>
                 </div>
                 

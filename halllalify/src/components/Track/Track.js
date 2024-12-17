@@ -198,7 +198,8 @@ async function getToken(code) {
         },
         body: JSON.stringify({ name: newName })
       });
-        console.log('Response Status: ', response.status);
+       return response.status
+
     }
   
   
