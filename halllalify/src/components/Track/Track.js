@@ -182,6 +182,27 @@ async function getToken(code) {
     return await response.json(); // This will return the array of playlists
   }
 
+
+  export async function changeUserPlaylist(playlist_id, newName) {
+    const url = `https://api.spotify.com/v1/playlists/${playlist_id}`;
+    console.log('Request URL:', url);
+    console.log('New Playlist Name:', newName);
+    console.log('Authorization Token:', currentToken.access_token);
+  
+
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + currentToken.access_token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: newName })
+      });
+        console.log('Response Status: ', response.status);
+    }
+  
+  
+
   
   
   export async function getUserData() {
@@ -207,4 +228,40 @@ async function getToken(code) {
     const token = await refreshToken();
     currentToken.save(token);
   }
+
+  const getRateLimitInfo = async () => {
+    try {
+      const response = await fetch('https://api.spotify.com/v1/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + currentToken.access_token,
+        }
+      });
+  
+      // Check for successful response
+      if (response.ok) {
+        const data = await response.json();
+  
+        // Extract rate limit information from headers
+        const rateLimit = response.headers.get('X-RateLimit-Limit');
+        const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
+        const rateLimitReset = response.headers.get('X-RateLimit-Reset');
+  
+        console.log(`API Rate Limit: ${rateLimit}`);
+        console.log(`API Requests Remaining: ${rateLimitRemaining}`);
+        console.log(`Rate Limit Resets At: ${new Date(rateLimitReset * 1000)}`); // Convert to human-readable time
+  
+        // Optional: handle the case if you're near the limit
+        if (rateLimitRemaining === '0') {
+          console.log('You have reached the rate limit!');
+        }
+      } else {
+        console.error('Failed to fetch user data');
+      }
+    } catch (error) {
+      console.error('Error fetching rate limit info:', error);
+    }
+  };
+  
+
   

@@ -1,16 +1,26 @@
 import styles from './Playlist.module.css';
 import React, { useContext, useState, useEffect } from 'react';
 import { SearchResultsContext } from '../SearchResults/SearchResults';
-import { loginWithSpotifyClick, getUserData, getUserPlaylists, createNewPlaylist, addToNewPlaylist } from '../Track/Track'
+import { loginWithSpotifyClick, getUserData, getUserPlaylists, createNewPlaylist, addToNewPlaylist, changeUserPlaylist } from '../Track/Track'
 
 const Playlist = () => {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
     const storedPlaylists = JSON.parse(localStorage.getItem('playlists'));
     const { addResults, setResults } = useContext(SearchResultsContext);
-    const [playlistName, setPlaylistName] = useState('')
+    const [playlistName, setPlaylistName] = useState('');
     const [playlistsStored, setPlaylistsStored] = useState({items: []}); 
+    const [newName, setNewName] = useState('');
+    const [saveID, setSaveID] = useState('')
     let trackNames = addResults.map(song => song.uri);
+    console.log("New Name: ", newName)
+    console.log('ID SHOULD XHANGE ', saveID)
+    console.log( "Playlists Stored: ",playlistsStored)
+    console.log('Type of saveID :', typeof saveID)
+    console.log('Type of newName:', typeof newName)
+      // Call the function to get rate limit info
 
+
+  
     useEffect(() => {
         // This will run every time storedUserData changes (for example, when the user logs in)
         const updatePlaylist = async () =>
@@ -41,10 +51,19 @@ const Playlist = () => {
             items: [...prev.items, newPlaylist]
         }));
     })
+
+    const handleNameChange = (e) =>
+    {
+        setNewName(e.target.textContent)
+    }
+    const handlePlaylistNameChange = async () =>
+    {
+      
+        console.log('NewName ID b4 CORS: ', newName)
+        await changeUserPlaylist(saveID, newName);
+    }
     
-   
-        
-    
+ 
     
       
 
@@ -111,19 +130,20 @@ const Playlist = () => {
                 <React.Fragment key = {index} >
                 <div className = {styles.playlist}>
                     <div>
-                        <h2 style = {{color:"white"}}>{result.name}</h2>
+                        <h2 style = {{color:"white", }}>{result.name}</h2>
                         <h3>By {result.album.artists[0].name}</h3>
                     </div>
-                    <button onClick = {() => handleDelete(result.id)}>-</button>
+                    <img className = {styles.trashImage} onClick = {() => handleDelete(result.id)} src = "images/deleteWhite.svg"/>
                 </div>
                
                 
                 </React.Fragment>
                 ))}
                 <div>
-                 {playlistsStored.lenght >1 ? playlistsStored.items.map((playlist) => 
+                 {playlistsStored?.items?.length >1  ? playlistsStored.items.map((playlist) => 
                  <div>
-                    <h2 style = {{color: 'white'}}>{playlist.name}</h2>
+                    <h2 onInput = {handleNameChange} onClick = {() => setSaveID(playlist.id)} onBlur = {handlePlaylistNameChange} contentEditable suppressContentEditableWarning={true} style = {{color: 'orange', width: '100px'}}>{playlist.name} </h2>
+                    <h2>{console.log(playlist.id)}</h2>
                     { Array.isArray(playlist.images) && playlist.images.length > 0 ?(
                     <img 
                         src={playlist.images[0].url} // Use the first image
@@ -135,8 +155,16 @@ const Playlist = () => {
 
                  ): null} 
                 </div>
-                    <button onClick = {createNewUserPlaylist}>Add Playlist</button>
-                    <button onClick = {handleSaveToSpotify} >Sign in to Spotify</button>
+                 <div className = {styles.buttonSort}>
+                    <div onClick = {createNewUserPlaylist} className = {styles.spotify} >
+                        <img style = {{height:'50px', width:'50px' }} src = "images/square-plus-regular-white.svg" />
+                        <h3>Add Playlist</h3>
+                    </div>
+                    <div onClick = {handleSaveToSpotify} className = {styles.spotify}>
+                        <img style = {{height:'50px', width:'50px' }} src = "images/spotify.svg"/>
+                        <h3>Sign in to Spotify</h3>
+                    </div>
+                </div>
                 
         </div>
     )};

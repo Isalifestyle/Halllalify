@@ -46,14 +46,9 @@ a {
   color: black;
   text-decoration: none;
 }
-html, body
-{
-  height:100%;
-}
 
 .App {
   text-align: center;
-  z-index:1;
   
 }
 
@@ -94,10 +89,10 @@ html, body
 .background {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-   url("/images/halalkicks.webp");
+   url("/Users/isalifesytle/javascript/react/Hallalify/halllalify/public/images/halalkicks.webp");
   background-size: cover; 
   background-position: center; 
-  height: 2800px; 
+  height: 3000px; 
   width: 100%;
 }
 

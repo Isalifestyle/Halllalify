@@ -7,14 +7,13 @@ function App() {
 
 
   return (
-  <body className= {styles.background}>
-    <div>
+    <div className = {styles.background}>
       <h1 style = {{color: 'rgb(117, 71, 164)', fontSize:100}}>Ha<span style = {{color:'orange'}}>lll</span>alify</h1>
       <SearchBar />
+      
 
       
     </div>
-  </body>
   );
 }
 

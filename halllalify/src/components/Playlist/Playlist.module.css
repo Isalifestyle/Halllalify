@@ -33,3 +33,39 @@ input::placeholder
 {
     color:white;
 }
+
+.trashImage {
+    width: 30px;  /* Example size for the image */
+    height: 30px; /* Example size for the image */
+    transition: filter 0.3s ease;
+}
+
+.trashImage:hover {
+  filter: invert(36%) sepia(74%) saturate(7484%) hue-rotate(360deg) brightness(100%) contrast(100%);
+}
+
+.buttonSort
+{
+    display:flex;
+    flex-direction:column;
+    margin-top:30px;
+    
+}
+
+.spotify
+{
+    display:flex;
+   
+    align-items:center;
+    cursor:pointer;
+    transition: background-color 0.3s ease;
+    width:150px;
+}
+
+
+
+.spotify:hover
+{
+    background-color:orange;
+    color:purple;
+}

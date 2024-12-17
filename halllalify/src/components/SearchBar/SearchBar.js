@@ -59,8 +59,12 @@ const SearchBar = () =>
             <SearchContext.Provider value = {{userChoice, setUserChoice}}>
             <div className = {styles.style}>
             <form> 
-                <input onChange = {(e) => handleSearch(e.target.value)} placeholder = "Enter a Surah"></input>
-                <button onClick = {() => setUserChoice(userChoice)}>Search</button>
+              <div className = {styles.style}>
+                  <input onChange = {(e) => handleSearch(e.target.value)} placeholder = "Enter a Surah"></input>
+                <div>
+                <img style = {{height: '60px', width: '60px'}} src= "images/searchButton.png" alt = "search button"/>
+                </div>
+               </div>
             </form>
             </div>
             <div style = {{marginRight:10}}>

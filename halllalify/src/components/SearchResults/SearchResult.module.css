@@ -2,6 +2,8 @@
 {
     /* background-color:rgb(228, 196, 137); */
     display:flex;
+    flex-direction: row;
+
     justify-content:center;   
     
 
@@ -11,6 +13,7 @@
     background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
     padding: "20px";
     border-radius: "10px";
+    
 }
 .data
 {
@@ -39,6 +42,7 @@ h2
 {
     display:flex;
     flex-direction: column;
+    margin-bottom:10px;
 }
 
 .artistInfo 
@@ -53,3 +57,15 @@ h2
     color: white;
     white-space: nowrap; /* Prevents the text from wrapping inside each element */
   }
+  
+  .rotateImage {
+    width: 55px;  /* Example size for the image */
+    height: 55px; /* Example size for the image */
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+  }
+  
+  .rotateImage:hover {
+    transform: rotate(360deg); /* Rotate 360 degrees on hover */
+  }
+  
+

@@ -38,25 +38,30 @@ const SearchResults = (props) =>
                                   <p style={{ color: "white" }}>No image available</p> // Fallback content
                                 )}
                                 </div>
-                          <div className = {styles.surahinfo}>
-                            <div>
-                            <h3 style = {{color : 'orange'}}>{item.name}</h3>
-                            </div>
-                            <div className={styles.artistInfo}>
-                              {item.artists?.slice(0, 2).map((artist, index) => (
-                                <div key={index} style={{ width: '75px', height: '20px' }}>
-                                  <h3 className = {styles.artistName} style={{ color: 'white' }}>{artist.name}</h3>
+                              <div className = {styles.style}>
+                                  <div className = {styles.surahinfo}>
+                                    <div>
+                                    <h3 style = {{color : 'orange'}}>{item.name}</h3>
+                                    </div>
+                                    <div className={styles.artistInfo}>
+                                      {item.artists?.slice(0, 2).map((artist, index) => (
+                                        <div key={index} style={{ width: '75px', height: '20px' }}>
+                                          <h3 className = {styles.artistName} style={{ color: 'white' }}>{artist.name}</h3>
+                                        </div>
+                                      ))}
+                                      {item.artists?.length > 2 && (
+                                        <div className = {styles.artistName}style={{ width: '75px', height: '20px' }}>
+                                          <h3>And More...</h3>
+                                        </div>
+                                    
+                                      )}
+                                
+                                      </div>
+                                        <img className = {styles.rotateImage}onClick ={() => handleClick(item)} src = "images/add.png" style = {{width: '30px', height: '30px'}}/>
+                                  </div>
                                 </div>
-                              ))}
-                              {item.artists?.length > 2 && (
-                                <div className = {styles.artistName}style={{ width: '75px', height: '20px' }}>
-                                  <h3>And More...</h3>
-                                </div>
-                              )}
-                            </div>
                           </div> 
-                        </div>
-                          <button onClick = {() => handleClick(item)} >+</button>
+
                         </React.Fragment>
             
             
