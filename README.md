@@ -73,4 +73,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ---
 
 ## Acknowledgements
-- PKCE biolerplate [code](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) by alnacle
+- PKCE [boilerplate code](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) by alnacle
